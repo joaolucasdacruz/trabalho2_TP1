@@ -27,7 +27,7 @@ public:
 /// Armazena um objeto da classe de dominio Nome
 /// que contem o nome do usuario
     {
-        nomeVsSenha(nomeSet,senha);
+        //nomeVsSenha(nomeSet,senha);
         this->nome = nomeSet;
     }
 
