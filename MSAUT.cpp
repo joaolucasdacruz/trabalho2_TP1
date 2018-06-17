@@ -18,7 +18,26 @@ bool MsAut:: autenticar(Usuario **usuario, int tipoUsr, ListaUSR **lista) throw(
         return(false);
     }
 
-    (*usuario)->usuarioL.setNome(resultado.getUsuario().usuarioL.getNome());
+    switch(tipoUsr)
+    {
+        case LEITOR:
+            (*usuario)->usuarioL.setNome(resultado.getUsuario().usuarioL.getNome());
+            (*usuario)->usuarioL.setSobrenome(resultado.getUsuario().usuarioL.getSobrenome());
+        break;
+        case DESENVOLVEDOR:
+            (*usuario)->usuarioD.setNome(resultado.getUsuario().usuarioD.getNome());
+            (*usuario)->usuarioD.setSobrenome(resultado.getUsuario().usuarioD.getSobrenome());
+            (*usuario)->usuarioD.setData(resultado.getUsuario().usuarioD.getData());
+        break;
+        case ADMINISTRADOR:
+            (*usuario)->usuarioA.setNome(resultado.getUsuario().usuarioA.getNome());
+            (*usuario)->usuarioA.setSobrenome(resultado.getUsuario().usuarioA.getSobrenome());
+            (*usuario)->usuarioA.setData(resultado.getUsuario().usuarioA.getData());
+            (*usuario)->usuarioA.setTelefone(resultado.getUsuario().usuarioA.getTelefone());
+            (*usuario)->usuarioA.setEndereco(resultado.getUsuario().usuarioA.getEndereco());
+        break;
+    }
+
     return(true);
 }
 #endif

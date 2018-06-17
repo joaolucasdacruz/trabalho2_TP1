@@ -6,6 +6,9 @@
 using namespace std;
 
 class ResultadoUSR
+/// Classe que serve para armazenar o resultado de uma
+/// operacao na lista e tambem, se necessario, os dados de
+/// um usuario obtido em uma procura na lista.
 {
 private:
 
@@ -37,6 +40,8 @@ public:
 };
 
 class ListaUSR
+/// Esta classe serve para armazenar usuarios do sistema
+/// Assim como seus dados.
 {
 
 private:
@@ -50,8 +55,18 @@ public:
     const static int LEITOR =1;
 
     ResultadoUSR pesquisar(Usuario, int);
+    /// Procura na lista de usuarios do sistema
+    /// um determinado usuario com o email e senha
+    /// especificados. Retorna um objeto que indica
+    /// se a busca foi ou não bem sucedida e também
+    /// os dados do usuário caso ele tenha sido encontrao
+
     ResultadoUSR incluir(Usuario, int);
-    // coment
+    /// Insere um novo usuário no sistema.
+    /// o retorno indica se foi possivel ou nao inserir o novo usuario.
+    /// nao sera possivel caso já exista um usuario no sistema com o
+    /// novo email a ser cadastrado.
+
 };
 
 #endif // LISTAUSR_H_INCLUDED
