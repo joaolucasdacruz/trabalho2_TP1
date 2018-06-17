@@ -108,6 +108,7 @@ ResultadoUSR ListaUSR::pesquisar(Usuario usuario,int tipoUsr)
                 break;
             }
     }
+    // coment
    resultado.setUsuario(usuario);
    return(resultado);
 }
