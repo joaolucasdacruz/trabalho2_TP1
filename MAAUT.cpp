@@ -5,13 +5,14 @@
 #include "interfaces.h"
 #include "MAAUT.h"
 #include "MSAUT.cpp"
+#include "MACON.h"
 
 
 using namespace std;
 
 
 
-int MAAUT :: logar(Administrador *usuario)
+int MAAUT :: logar(Usuario *usuario, ListaUSR *lista)
 {
 
     Email emailLido;
@@ -30,7 +31,7 @@ int MAAUT :: logar(Administrador *usuario)
     cout<<"Para efetuar o login, selecione o tipo de usuário, digite  o email e a senha: \n"<<endl;
     while(!logado)
     {
-          while(tipoUsr!= ADM && tipoUsr!= DESENVOL && tipoUsr!= LEITOR )
+          while(tipoUsr!= ADMINISTRADOR && tipoUsr!= DESENVOLVEDOR && tipoUsr!= LEITOR )
           {
               cout<<"1. LEITOR"<<endl;
               cout<<"2. DESENVOLVEDor"<<endl;
@@ -38,7 +39,7 @@ int MAAUT :: logar(Administrador *usuario)
               cout <<">> ";
               cin >> tipoUsr;
 
-              if(tipoUsr!= ADM && tipoUsr!= DESENVOL && tipoUsr!= LEITOR )
+              if(tipoUsr!= ADMINISTRADOR && tipoUsr!= DESENVOLVEDOR && tipoUsr!= LEITOR )
                     cout<<"Tipo de usuário não reconhecido, por favor selecione novamente:" <<endl;
           }
 
@@ -74,20 +75,30 @@ int MAAUT :: logar(Administrador *usuario)
 
           if(senhaVal==true && emailVal==true)
           {
-                usuario->setEmail(emailLido);
-                usuario->setSenha(senhaLida);
-                usuarioS.setEmail(emailLido);
-                usuarioS.setSenha(senhaLida);
+                switch (tipoUsr)
+                {
+                    case ADMINISTRADOR :
+                        usuario->usuarioA.setEmail(emailLido);
+                        usuario->usuarioA.setSenha(senhaLida);
+                    case DESENVOLVEDOR :
+                        usuario->usuarioD.setEmail(emailLido);
+                        usuario->usuarioD.setSenha(senhaLida);
+                    case LEITOR :
+                        usuario->usuarioL.setEmail(emailLido);
+                        usuario->usuarioL.setSenha(senhaLida);
+                }
+                //usuarioS.setEmail(emailLido);
+                //usuarioS.setSenha(senhaLida);
                 IsAut *aut = new MsAut();
                 try
                 {
-                    logado = aut->autenticar(&usuario,tipoUsr);
+                    logado = aut->autenticar(&usuario,tipoUsr,&lista);
                     if(logado==false )
                     {
                         tipoUsr = 0;
                         senhaVal = false;
                         emailVal = false;
-                        cout<<"Usuário e senha não encontrados, tente novamente."<<endl;
+                        cout<<"Usuário e/ou senha não encontrados, tente novamente."<<endl;
                     }
                 }
                 catch(runtime_error &exp)

@@ -1,18 +1,16 @@
-#ifndef MAAUT_H_INCLUDED
-#define MAAUT_H_INCLUDED
+#ifndef MAUSR_H_INCLUDED
+#define MAUSR_H_INCLUDED
 
 #include <iostream>
 #include "Dominios.hpp"
 #include "Entidades.hpp"
 #include "interfaces.h"
 #include "MACON.h"
-#include "ListaUSR.h"
+
 
 using namespace std;
 
-
-
-class MAAUT : public IaAut {
+class MaUsr : public IaUsr {
 
 private:
 
@@ -20,13 +18,13 @@ private:
     const static int DESENVOLVEDOR =2;
     const static int LEITOR =1;
 
-    //Administrador *usuario;
+    void mostrarDados(Usuario, int);
 
 public:
 
-    int logar(Usuario *, ListaUSR *);
+
+    void opcoesDeUsuario(Usuario *, int*);
 
 };
 
-
-#endif // MAAUT_H_INCLUDED
+#endif
