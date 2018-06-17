@@ -51,6 +51,7 @@ public:
 
     ResultadoUSR pesquisar(Usuario, int);
     ResultadoUSR incluir(Usuario, int);
+    // coment
 };
 
 #endif // LISTAUSR_H_INCLUDED
