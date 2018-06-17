@@ -14,6 +14,9 @@ class IaAut
 {
 public:
 
+///Pede ao usuário o Email e a senha
+///retorna um inteiro correspondente  ao tipo de conta do usuário
+///leitor, desenvolvedor ou administrador ou correspondente a uma falha no login.
     virtual int logar (Usuario *, ListaUSR *) = 0;
 
 };
@@ -24,6 +27,8 @@ class IsAut
 {
 public:
 
+///Recebe um usuario, um tipo de usuario e uma lista de usuarios
+///retorna um verdadeiro se o usuario foi logado ou falso caso contrario.
     virtual bool autenticar (Usuario **, int tipoUsr,ListaUSR **) throw (runtime_error) = 0;
 
 };
@@ -34,8 +39,14 @@ class IaUsr
 {
 public:
 
-    //virtual void criarConta(int) = 0;
+///Recebe um usuario e um tipo de usuario
+///Apresenta opcoes de acoes ao usuario.
     virtual void opcoesDeUsuario(Usuario*, int *)=0;
+
+///Recebe um usuario e um tipo de usuario
+///Apresenta os dados armazenados para o usuario.
+    virtual void mostrarDados(Usuario usuario, int tipoUsr);
+    //virtual void criarConta(int) = 0;
     //virtual void deletarUsuario(Usuario*, int*);
     //virtual void editarDados(Usuario*, int*);
 };
@@ -47,8 +58,15 @@ class IsUsr
 
  public:
 
+///Recebe um usuario e um tipo de usuario
+///Substitui os dados do usuario no sistema.
   virtual void editarDados(Usuario**, int**) throw (runtime_error) =0;
+
+///Recebe um usuario e um tipo de usuario
+///Retira o cadastro do usuario do sistema.
   virtual void deletarUsuario(Usuario**, int**) throw (runtime_error) = 0;
+
+///Armazena os dados do usuario no sistema.
   virtual void criarConta() throw (runtime_error) = 0;
 
 };
