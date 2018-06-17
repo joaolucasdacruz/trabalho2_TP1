@@ -5,7 +5,6 @@ ResultadoUSR ListaUSR::incluir (Usuario usuario,int tipoUsr)
 
     ResultadoUSR resultado;
     string email;
-
     switch(tipoUsr)
     {
         case LEITOR:
@@ -19,6 +18,7 @@ ResultadoUSR ListaUSR::incluir (Usuario usuario,int tipoUsr)
                     return(resultado);
                 }
             }
+        break;
         case DESENVOLVEDOR:
             email = usuario.usuarioD.getEmail().getEmail();
             // A falha ocorre caso esse Email já esteja cadastrado como Desenvolvedor
@@ -30,6 +30,7 @@ ResultadoUSR ListaUSR::incluir (Usuario usuario,int tipoUsr)
                     return(resultado);
                 }
             }
+        break;
         case ADMINISTRADOR:
             email = usuario.usuarioA.getEmail().getEmail();
             // A falha ocorre caso esse Email já esteja cadastrado como Administrador
@@ -41,6 +42,7 @@ ResultadoUSR ListaUSR::incluir (Usuario usuario,int tipoUsr)
                     return(resultado);
                 }
             }
+        break;
     }
     lista.push_back(usuario);
     resultado.setResultado(ResultadoUSR::SUCESSO);
@@ -60,12 +62,15 @@ ResultadoUSR ListaUSR::pesquisar(Usuario usuario,int tipoUsr)
         case LEITOR:
             email = (usuario).usuarioL.getEmail().getEmail();
             senha = (usuario).usuarioL.getSenha().getSenha();
+        break;
         case DESENVOLVEDOR:
             email = (usuario).usuarioD.getEmail().getEmail();
             senha = (usuario).usuarioD.getSenha().getSenha();
+        break;
         case ADMINISTRADOR:
             email = (usuario).usuarioA.getEmail().getEmail();
             senha = (usuario).usuarioA.getSenha().getSenha();
+        break;
     }
 
     for(list<Usuario>::iterator elemento = lista.begin(); elemento != lista.end(); elemento++)
@@ -80,6 +85,7 @@ ResultadoUSR ListaUSR::pesquisar(Usuario usuario,int tipoUsr)
                         (usuario).usuarioL.setNome(elemento->usuarioL.getNome());
                         (usuario).usuarioL.setSobrenome(elemento->usuarioL.getSobrenome());
                     }
+                break;
                 case DESENVOLVEDOR:
                     if(elemento->usuarioD.getEmail().getEmail() == email && elemento->usuarioD.getSenha().getSenha()==senha)
                     {
@@ -88,7 +94,7 @@ ResultadoUSR ListaUSR::pesquisar(Usuario usuario,int tipoUsr)
                         (usuario).usuarioD.setSobrenome(elemento->usuarioD.getSobrenome());
                         (usuario).usuarioD.setData(elemento->usuarioD.getData());
                     }
-
+                break;
                 case ADMINISTRADOR:
                     if(elemento->usuarioA.getEmail().getEmail() == email && elemento->usuarioA.getSenha().getSenha()==senha)
                     {
@@ -99,6 +105,7 @@ ResultadoUSR ListaUSR::pesquisar(Usuario usuario,int tipoUsr)
                         (usuario).usuarioA.setTelefone(elemento->usuarioA.getTelefone());
                         (usuario).usuarioA.setEndereco(elemento->usuarioA.getEndereco());
                     }
+                break;
             }
     }
    resultado.setUsuario(usuario);

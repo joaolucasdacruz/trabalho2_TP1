@@ -19,7 +19,6 @@ bool MsAut:: autenticar(Usuario **usuario, int tipoUsr, ListaUSR **lista) throw(
     }
 
     (*usuario)->usuarioL.setNome(resultado.getUsuario().usuarioL.getNome());
-    cout<<"Ta igual"<<endl;
     return(true);
 }
 #endif
