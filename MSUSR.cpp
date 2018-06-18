@@ -3,8 +3,9 @@
 #include "MACON.h"
 #include "Dominios.hpp"
 #include "Entidades.hpp"
+#include<list>
 
-void MsUsr::editarDados(Usuario ** usuario, int ** tipoUsr) throw (runtime_error)
+void MsUsr::editarDados(Usuario ** usuario, int ** tipoUsr, ListaUSR **lista) throw (runtime_error)
 {
     Nome nome;
     Sobrenome sobrenome;
@@ -17,8 +18,11 @@ void MsUsr::editarDados(Usuario ** usuario, int ** tipoUsr) throw (runtime_error
     int escolha=0;
     string dado;
 
-        if(**tipoUsr==LEITOR)
-            throw runtime_error("erro de sistema");
+    if(**tipoUsr == 0)
+    {
+        escolha=10;
+        cout<<"Usuario não logado, tente novamente depois de realizar o cadastro"<<endl;
+    }
 
     while(escolha != 10)
     {
@@ -62,15 +66,15 @@ void MsUsr::editarDados(Usuario ** usuario, int ** tipoUsr) throw (runtime_error
         case LEITOR :
             if(escolha != 1 && escolha != 2 && escolha != 3 && escolha != 4 && escolha != 5)
                 cout<<"Opção inválida, por favor escolha outra"<<endl;
-            if(escolha==6)
+            if(escolha==5)
                 escolha=10;
         break;
         }
         if( escolha!=10)
         {
-        cout<<"Digite o novo dado:"<<endl;
-        cout<<">> ";
-        cin >> dado;
+            cout<<"Digite o novo dado:"<<endl;
+            cout<<">> ";
+            cin >> dado;
         }
         try{
         switch (escolha)
@@ -139,7 +143,9 @@ void MsUsr::editarDados(Usuario ** usuario, int ** tipoUsr) throw (runtime_error
             cout<<"Formato de dado inválido, tente novamente"<<endl;
        }
      }
+     (*lista)->substituir(**usuario,**tipoUsr);
 }
+
 
 
 void MsUsr ::deletarUsuario(Usuario ** usuario, int ** tipoUsr ) throw (runtime_error)
@@ -155,7 +161,7 @@ void MsUsr ::deletarUsuario(Usuario ** usuario, int ** tipoUsr ) throw (runtime_
 }
 
 
-void MsUsr ::criarConta() throw (runtime_error)
+void MsUsr ::criarConta(ListaUSR **lista) throw (runtime_error)
 {
 
     int escolha;
@@ -175,13 +181,15 @@ void MsUsr ::criarConta() throw (runtime_error)
     Telefone telefoneU;
     Data aniversarioU;
 
+    Usuario newUsr;
+
 
     cout <<"Que tipo de conta deseja criar ?"<<endl;
     while(escolha != 1 && escolha != 2 && escolha != 3)
     {
-        cout<<"1.ADMINISTRADOR"<<endl;
+        cout<<"1.LEITOR"<<endl;
         cout<<"2.DESENVOLVEDOR"<<endl;
-        cout<<"3.LEITOR"<<endl;
+        cout<<"3.ADMINISTRADOR"<<endl;
         cin >> escolha;
 
         if(escolha != 1 && escolha != 2 && escolha != 3)
@@ -189,7 +197,74 @@ void MsUsr ::criarConta() throw (runtime_error)
             cout<<"Opação escolhida não reconhecida, por favor tente novamente"<<endl;
         }
     }
-    if(escolha==1)
+    if(escolha==LEITOR)
+    {
+        while(true)
+        {
+            try
+            {
+                cout<<"Por favor informe: \n"<<endl;
+                cout<<"Seu nome:  ";
+                cin >> nome;
+                nomeU.setNome(nome);
+                cout<<"\nSeu Sobrenome:  ";
+                cin >> sobrenome;
+                sobrenomeU.setSobreNome(sobrenome);
+                cout<<"\nSeu Email:  ";
+                cin >> email;
+                emailU.setEmail(email);
+                cout<<"\nSua Senha:  ";
+                cin >> senha;
+                senhaU.setSenha(senha);
+                break;
+            }
+            catch (invalid_argument)
+            {
+                cout<<"Dados fornecidos de maneira invalida, tente novamente"<<endl;
+            }
+        }
+
+        newUsr.usuarioL.setNome(nomeU);
+        newUsr.usuarioL.setSobrenome(sobrenomeU);
+        newUsr.usuarioL.setEmail(emailU);
+        newUsr.usuarioL.setSenha(senhaU);
+        (*lista)->incluir(newUsr,LEITOR);
+    }
+    if(escolha == DESENVOLVEDOR)
+    {
+        while(true)
+        {
+            try
+            {
+                cout<<"Por favor informe: \n"<<endl;
+                cout<<"Seu nome:  ";
+                cin >> nome;
+                nomeU.setNome(nome);
+                cout<<"\nSeu Sobrenome:  ";
+                cin >> sobrenome;
+                sobrenomeU.setSobreNome(sobrenome);
+                cout<<"\nSeu Email:  ";
+                cin >> email;
+                emailU.setEmail(email);
+                cout<<"\nSua data de Nascimento:  ";
+                cin >> aniversario;
+                cout<<"\nSua Senha:  ";
+                cin >> senha;
+                senhaU.setSenha(senha);
+                break;
+            }
+            catch (invalid_argument)
+            {
+                cout<<"Dados fornecidos de maneira invalida, tente novamente"<<endl;
+            }
+        }
+        newUsr.usuarioD.setNome(nomeU);
+        newUsr.usuarioD.setSobrenome(sobrenomeU);
+        newUsr.usuarioD.setEmail(emailU);
+        newUsr.usuarioD.setSenha(senhaU);
+        (*lista)->incluir(newUsr,DESENVOLVEDOR);
+    }
+    if(escolha==ADMINISTRADOR)
     {
         while(true)
         {
@@ -224,11 +299,19 @@ void MsUsr ::criarConta() throw (runtime_error)
                 cout<<"Dados fornecidos de maneira invalida, tente novamente"<<endl;
             }
         }
-
-
+        newUsr.usuarioA.setNome(nomeU);
+        newUsr.usuarioA.setSobrenome(sobrenomeU);
+        newUsr.usuarioA.setEmail(emailU);
+        newUsr.usuarioA.setTelefone(telefoneU);
+        newUsr.usuarioA.setEndereco(enderecoU);
+        newUsr.usuarioA.setSenha(senhaU);
+        (*lista)->incluir(newUsr,ADMINISTRADOR);
         cout<<"Conta criada com sucesso"<<endl;
     }
-    else
-        throw runtime_error("erro no sistema");
 
+
+        if((*lista)->vazia()== true)
+        {
+            throw runtime_error("erro no sistema");
+        }
 }

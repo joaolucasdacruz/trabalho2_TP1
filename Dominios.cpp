@@ -357,7 +357,7 @@ bool Email::validar(string email)
     int contaA=0;
     char permitidos[21] = {'!','#','$','%','&','*','_','-','/','?','^','_','`','{','|','}','~',';','.','\n','\0'};
     int chValido=0;
-    bool achouInvalido;
+    bool achouInvalido=false;
     bool nDig = false;
     int fimEmail=0;
 
@@ -365,6 +365,7 @@ bool Email::validar(string email)
 
     for(i=0;email[i]!='\0';i++)
     {
+
         if(email[i]=='@')
         {
             posA=i;
@@ -376,11 +377,13 @@ bool Email::validar(string email)
  //pos@=-1 significa que não foi colocado @
     if(email[0]=='.' || email[posA-1] == '.' || posA==-1)
     {
+        cout<<"ponto"<<endl;
         return(false);
     }
 // O email só pode ter um separador entre local e dominio
     if(contaA!=1)
     {
+        cout<<"arrobas"<<endl;
         return(false);
     }
 // Procura algum caractere especial não permitido no local
@@ -398,7 +401,7 @@ bool Email::validar(string email)
             }
             if(chValido == 0 )
             {
-
+                cout<<"Char invalido :"<<email[i]<<endl;
                 achouInvalido = true;
             }
             chValido = 0;
@@ -407,6 +410,7 @@ bool Email::validar(string email)
 // testa se foi encontrao no local um caractere não permitido
     if(achouInvalido == true)
     {
+        cout<<"AchouInv"<<endl;
         return(false);
     }
 
@@ -415,6 +419,7 @@ bool Email::validar(string email)
 //Checa se o hifen é o primeiro ou último caractere do dominio
     if(email[posA+1]=='-' || email[fimEmail]=='-')
     {
+        cout<<"hifen"<<endl;
          return(false);
     }
 
@@ -426,15 +431,17 @@ bool Email::validar(string email)
         {
             nDig = true;
         }
-// checa se co caractere percorrido é permitido
+// checa se o caractere percorrido é permitido
         if((carac<48 || carac > 57) && (carac< 97 || carac > 122) && (carac<48 || carac>57) && email[i]!= '-')
         {
+            cout<<"char n permitido"<<endl;
             return(false);
         }
     }
 //retorna falso se não encontrar nenhum caractere que não seja um digito
     if(nDig==false)
     {
+        cout<<"Dominio sem char"<<endl;
         return(false);
     }
 

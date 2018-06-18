@@ -67,6 +67,13 @@ public:
     /// nao sera possivel caso já exista um usuario no sistema com o
     /// novo email a ser cadastrado.
 
+    ResultadoUSR substituir(Usuario, int);
+    /// Substitui na lista de usuarios os dados do usuario logado
+
+    bool vazia();
+    /// Verifica se a lista de usuarios esta vazia
+    /// Em caso afirmativo, eh retornado verdadeiro
+
 };
 
 #endif // LISTAUSR_H_INCLUDED

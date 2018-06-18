@@ -23,7 +23,7 @@ private:
 public:
 
 
-    void opcoesDeUsuario(Usuario *, int*);
+    void opcoesDeUsuario(Usuario *, int*,ListaUSR*);
 
 };
 

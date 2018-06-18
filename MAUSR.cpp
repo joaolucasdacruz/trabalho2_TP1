@@ -9,7 +9,7 @@
 
 using namespace std;
 
-void MaUsr:: opcoesDeUsuario(Usuario *usuario, int *tipoUsr)
+void MaUsr:: opcoesDeUsuario(Usuario *usuario, int *tipoUsr, ListaUSR *lista)
 {
     int escolha=0;
     MaUsr dados;
@@ -37,7 +37,7 @@ void MaUsr:: opcoesDeUsuario(Usuario *usuario, int *tipoUsr)
 
         case 1:
                 cout<<"1.Criar Conta"<<endl;
-                conta->criarConta();
+                conta->criarConta(&lista);
             break;
 
         case 2:
@@ -47,7 +47,7 @@ void MaUsr:: opcoesDeUsuario(Usuario *usuario, int *tipoUsr)
         case 3:
             try
             {
-                conta->editarDados(&usuario,&tipoUsr);
+                conta->editarDados(&usuario,&tipoUsr,&lista);
             }
             catch (runtime_error &exp)
             {

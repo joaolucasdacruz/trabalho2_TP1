@@ -34,10 +34,9 @@ class IaUsr
 {
 public:
 
-    //virtual void criarConta(int) = 0;
-    virtual void opcoesDeUsuario(Usuario*, int *)=0;
-    //virtual void deletarUsuario(Usuario*, int*);
-    //virtual void editarDados(Usuario*, int*);
+
+    virtual void opcoesDeUsuario(Usuario*, int *, ListaUSR*)=0;
+
 };
 
 /*----------------------Interface de serviço de gestão de usuario---------------------------------*/
@@ -47,9 +46,9 @@ class IsUsr
 
  public:
 
-  virtual void editarDados(Usuario**, int**) throw (runtime_error) =0;
+  virtual void editarDados(Usuario**, int**,ListaUSR **) throw (runtime_error) =0;
   virtual void deletarUsuario(Usuario**, int**) throw (runtime_error) = 0;
-  virtual void criarConta() throw (runtime_error) = 0;
+  virtual void criarConta(ListaUSR**) throw (runtime_error) = 0;
 
 };
 #endif // INTERFACES_H_INCLUDED

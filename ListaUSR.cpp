@@ -113,4 +113,73 @@ ResultadoUSR ListaUSR::pesquisar(Usuario usuario,int tipoUsr)
    return(resultado);
 }
 
+ResultadoUSR ListaUSR:: substituir(Usuario usuario, int tipoUsr)
+{
+    ResultadoUSR resultado;
+
+    switch(tipoUsr)
+    {
+
+        case LEITOR:
+
+            for(list<Usuario>::iterator elemento = lista.begin(); elemento != lista.end(); elemento++)
+            {
+
+                if(elemento->usuarioL.getEmail().getEmail()== usuario.usuarioL.getEmail().getEmail())
+                {
+                    resultado.setUsuario(usuario);
+                    elemento->usuarioL.setNome(usuario.usuarioL.getNome());
+                    elemento->usuarioL.setSobrenome(usuario.usuarioL.getSobrenome());
+                    elemento->usuarioL.setSenha(usuario.usuarioL.getSenha());
+                    elemento->usuarioL.setEmail(usuario.usuarioL.getEmail());
+                }
+            }
+
+        break;
+        case DESENVOLVEDOR:
+
+            for(list<Usuario>::iterator elemento = lista.begin(); elemento != lista.end(); elemento++)
+            {
+
+                if(elemento->usuarioD.getEmail().getEmail()== usuario.usuarioD.getEmail().getEmail())
+                {
+                    resultado.setUsuario(usuario);
+                    elemento->usuarioD.setNome(usuario.usuarioD.getNome());
+                    elemento->usuarioD.setSobrenome(usuario.usuarioD.getSobrenome());
+                    elemento->usuarioD.setData(usuario.usuarioD.getData());
+                    elemento->usuarioD.setSenha(usuario.usuarioD.getSenha());
+                    elemento->usuarioD.setEmail(usuario.usuarioD.getEmail());
+                }
+            }
+
+        break;
+        case ADMINISTRADOR:
+
+            for(list<Usuario>::iterator elemento = lista.begin(); elemento != lista.end(); elemento++)
+            {
+
+                if(elemento->usuarioD.getEmail().getEmail()== usuario.usuarioD.getEmail().getEmail())
+                {
+                    resultado.setUsuario(usuario);
+                    elemento->usuarioA.setNome(usuario.usuarioA.getNome());
+                    elemento->usuarioA.setSobrenome(usuario.usuarioA.getSobrenome());
+                    elemento->usuarioA.setData(usuario.usuarioA.getData());
+                    elemento->usuarioA.setSenha(usuario.usuarioA.getSenha());
+                    elemento->usuarioA.setEmail(usuario.usuarioA.getEmail());
+                }
+            }
+
+        break;
+    }
+    return(resultado);
+}
+
+bool ListaUSR:: vazia()
+{
+    if(lista.empty()==true)
+        return (true);
+
+    return(false);
+}
+
 

@@ -16,9 +16,9 @@ private:
 
 public:
 
-    void editarDados(Usuario**, int**) throw (runtime_error);
+    void editarDados(Usuario**, int**,ListaUSR **) throw (runtime_error);
     void deletarUsuario(Usuario**, int**) throw (runtime_error);
-    void criarConta() throw (runtime_error);
+    void criarConta(ListaUSR **) throw (runtime_error);
 
 };
 

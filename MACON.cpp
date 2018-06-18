@@ -66,8 +66,29 @@ void MaCon:: menuEscolha()
 
     int opcao;
     int tipoUsr=0;
+    Nome nome;
 
     while(opcao != 4){
+
+        if(tipoUsr == LEITOR )
+        {
+            nome = (usuario.usuarioL).getNome();
+            cout<<"Logado como: "<<nome.getNome()<<endl;
+            cout<<"permissão: Leitor"<<endl;
+        }
+
+        if(tipoUsr == DESENVOLVEDOR)
+        {
+            nome = (usuario.usuarioD).getNome();
+            cout<<"Logado como: "<<nome.getNome()<<endl;
+            cout<<"permissão: Desenvolvedor"<<endl;
+        }
+        if(tipoUsr == ADMINISTRADOR)
+        {
+            nome = (usuario.usuarioA).getNome();
+            cout<<"Logado como: "<<nome.getNome()<<endl;
+            cout<<"permissão: Administrador"<<endl;
+        }
         cout<<"Bem vindo à lista de vocabulário controlado, escolha a ação que deseja realizar"<<endl;
         cout<<"1.Login"<<endl;
         cout<<"2.Gerir/criar conta"<<endl;
@@ -84,14 +105,11 @@ void MaCon:: menuEscolha()
             IaAut *log = new MAAUT();
             tipoUsr = log->logar(&usuario, &lista);
             opcao = 0;
-            Nome nome;
-            nome = (usuario.usuarioL).getNome();
-            cout<<"Logado como:" << nome.getNome() <<endl;
         }
         if(opcao== 2)
         {
             IaUsr *conta = new MaUsr();
-            conta->opcoesDeUsuario(&usuario,&tipoUsr);
+            conta->opcoesDeUsuario(&usuario,&tipoUsr,&lista);
         }
     }
 }
