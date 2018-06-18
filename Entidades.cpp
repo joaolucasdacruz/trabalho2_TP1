@@ -25,8 +25,6 @@ void Leitor::nomeVsSenha(Nome nome,Senha senha) throw (invalid_argument)
 
      const int tamNome = 20;
      const int tamSenha = 8;
-     cout<<senha<<endl;
-     //cout<<nomeS<<endl;
      char compara[tamNome];
      int i=0,j=0;
 

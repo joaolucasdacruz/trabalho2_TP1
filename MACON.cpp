@@ -49,20 +49,19 @@ void MaCon:: menuEscolha()
     usu_1.usuarioL.setNome(nome1);
     usu_1.usuarioL.setSobrenome(sobrenome1);
 
-    //usu_2.usuarioL.setEmail(email2);
-    //usu_2.usuarioL.setSenha(senha2);
-    //usu_2.usuarioL.setNome(nome2);
-    //usu_2.usuarioL.setSobrenome(sobrenome2);
+    usu_2.usuarioL.setEmail(email2);
+    usu_2.usuarioL.setSenha(senha2);
+    usu_2.usuarioL.setNome(nome2);
+    usu_2.usuarioL.setSobrenome(sobrenome2);
 
     usu_3.usuarioL.setEmail(email3);
     usu_3.usuarioL.setSenha(senha3);
     usu_3.usuarioL.setNome(nome3);
-    cout<<"Até aqui"<<endl;
     usu_3.usuarioL.setSobrenome(sobrenome3);
 
 
     resultado = lista.incluir(usu_1,1);
-    //resultado = lista.incluir(usu_2,1);
+    resultado = lista.incluir(usu_2,1);
     resultado = lista.incluir(usu_3,1);
 
     int opcao;
@@ -87,7 +86,6 @@ void MaCon:: menuEscolha()
             opcao = 0;
             Nome nome;
             nome = (usuario.usuarioL).getNome();
-            string name = nome.getNome();
             cout<<"Logado como:" << nome.getNome() <<endl;
         }
         if(opcao== 2)
