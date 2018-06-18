@@ -126,6 +126,10 @@ void MaUsr:: mostrarDados(Usuario usuario, int tipoUsr)
             cout<<"Nome: "<<nome.getNome()<<endl;
             cout<<"Sobrenome: "<<sobrenome.getSobreNome()<<endl;
             cout<<"Email: "<<email.getEmail()<<endl;
+        break;
+    case 0:
+
+            cout<<"Usuario não cadastrado"<<endl;
 
         break;
     }

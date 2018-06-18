@@ -11,6 +11,9 @@
 using namespace std;
 /*------------------------Interface de apresentação de autenticação------------------------------*/
 class IaAut
+///Esta classe faz a interface que requisita
+///a funcao de logar no sistema.
+
 {
 public:
 
@@ -24,6 +27,12 @@ public:
 /*-------------------------Interface de serviço de autenticação----------------------------------*/
 
 class IsAut
+///Esta classe faz a interface que requisita
+///requisita o método que faz comparação a ser feita entre
+///o email e senha digitados pelo usuário e aqueles presentes no sistema.
+///Tal método está presente na classe de serviço de autenticação.
+
+
 {
 public:
 
@@ -36,16 +45,13 @@ public:
 /*-----------------------Interface de apresentação de gestão de usuario---------------------------*/
 
 class IaUsr
+
 {
 public:
 
 ///Recebe um usuario e um tipo de usuario
 ///Apresenta opcoes de acoes ao usuario.
     virtual void opcoesDeUsuario(Usuario*, int *)=0;
-
-///Recebe um usuario e um tipo de usuario
-///Apresenta os dados armazenados para o usuario.
-    virtual void mostrarDados(Usuario usuario, int tipoUsr);
     //virtual void criarConta(int) = 0;
     //virtual void deletarUsuario(Usuario*, int*);
     //virtual void editarDados(Usuario*, int*);
@@ -58,7 +64,7 @@ class IsUsr
 
  public:
 
-///Recebe um usuario e um tipo de usuario
+ ///Recebe um usuario e um tipo de usuario
 ///Substitui os dados do usuario no sistema.
   virtual void editarDados(Usuario**, int**) throw (runtime_error) =0;
 
